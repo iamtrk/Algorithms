@@ -8,6 +8,7 @@ public class binaryprint {
             System.out.println(s);
             return;
         }
+	// Reverse below two lines to print binary numbers in increasing order
         print(s+"1", d+1, N);
         print(s+"0", d+1, N);
     }
