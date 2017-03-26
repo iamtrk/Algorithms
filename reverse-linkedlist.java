@@ -7,7 +7,7 @@ public Node reverse(Node node) {
 		return node;
 	}
 
-	Node rev = rerse(node.next);
+	Node rev = reverse(node.next);
 	node.next.next = node;
 	node.next = null;
 	return rev;
