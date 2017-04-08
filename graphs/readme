@@ -1,0 +1,6 @@
+Problem: Determine if a directed acyclic graph has a cycle
+Use the graph object to instantiate a directed acyclic graph
+
+add(startNode, destinateNode)
+
+After adding the nodes, then invoke graph.hasCycle() --> to determine if a cycle exists in the graph
