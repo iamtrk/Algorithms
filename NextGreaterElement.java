@@ -47,11 +47,10 @@ public class NextGreaterElement {
             } else {
                 if (numbers[i + 1] > numbers[i]) {
                     output[i] = numbers[i + 1];
-                }
-
-                else {
+                } else {
                     output[i] = nextmax;
                 }
+                
                 if (numbers[i] > nextmax) {
                     output[i] = numbers[i];
                     nextmax = output[i];
