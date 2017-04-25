@@ -1,6 +1,7 @@
 //http://www.geeksforgeeks.org/next-greater-element/
 
 
+
 //more optimized solution than the one given in geeksforgeeks
 
 public class NextGreaterElement {
