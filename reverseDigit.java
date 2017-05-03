@@ -1,4 +1,4 @@
-public int digitreverse(int n) {
+public int digitreverse(int d) {
 	int r = 0;
 	while(n!=0) {
 		r = r*10+d%10;
