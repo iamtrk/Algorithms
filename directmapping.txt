@@ -1,0 +1,13 @@
+Direct mapping technique for Cache to Main Memory mapping.
+
+Lets assume we have an n bits long address space for main memory.
+
+Each main memory black has 2^m bytes.
+
+Cache size 2^n bytes size. (n > m)
+
+So total main memory blocks that the cache can hole = 2^n/2^m. So n-m bits can be used for indexing.
+
+m bits are used for off-setting.
+
+Rest of the bits are used for Tagging.
