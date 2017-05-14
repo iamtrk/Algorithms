@@ -1,7 +1,5 @@
 package algorithms;
 
-import com.example.test.Reverse_Two_Step_LL.Node;
-
 public class Reverse_Two_Step_LL {
     private static class Node {
         public Integer data;
