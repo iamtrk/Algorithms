@@ -3,7 +3,7 @@ package com.fit.linkedlist;
 import java.util.Random;
 
 /**
- * Created by m01231 on 18/03/17.
+ * Created by iamtrk on 18/03/17.
  */
 public class linkedlist {
     private Node head;

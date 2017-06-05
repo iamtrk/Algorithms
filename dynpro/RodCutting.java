@@ -1,7 +1,7 @@
 package com.fit.dynpro;
 
 /**
- * Created by m01231 on 19/05/17.
+ * Created by iamtrk on 19/05/17.
  */
 public class RodCutting {
     public static void main(String[] args) {
