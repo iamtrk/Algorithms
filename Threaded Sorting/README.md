@@ -8,7 +8,7 @@ The program sorts a large set of random numbers
   Have test ran the script with 20 Million random numbers.
   Threaded sort performed 4X compared to Collections sort on MacBook Pro.
   
-  ** Overview: **
+  > Overview:
   * The program splits the input random numbers into range buckets.
   * Each range bucket is sorted in a different thread.
   * The callable thread returns the sorted list.
