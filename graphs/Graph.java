@@ -1,77 +1,110 @@
-package accelhack;
+package com.fit.gg;
 
+import java.util.*;
+
+/**
+ * Created by iamtrk on 15/11/16.
+ */
 public class Graph {
 
-	// dependency list
-	Node[] graph;
-	int[] feasible;	// 0 means not visited; 1 -> visited; 2 -> feasible
-	
-	private static final int NOT_VISITED = 0;
-	private static final int VISITED = 1;
-	private static final int FEASIBLE = 2;
-	
-	public Graph(int n) {
+    private Map<String, List<String>> graph;
+    private Map<String, Boolean> visited;
 
-		graph = new Node[n];
-		
-		for (int i = 0; i < n; i++)
-			graph[i] = new Node(i);
-		
-		feasible = new int[n];
-	}
+    public Graph() {
+        graph = new HashMap<>();
+        visited = new HashMap<>();
+    }
 
-	public void add (int nodeIndex, int dependencyIndex) {
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        graph.addEdge("A", "B");
+        graph.addEdge("B", "C");
+        graph.addEdge("C", "D");
+        graph.addEdge("D", "A");
 
-		Node node = graph[nodeIndex];
-		
-		Node newDep = new Node(dependencyIndex);
+        String source = "A";
+        String dest   = "D";
+        graph.BFS(source, dest, source);
+        graph.DFS(source, dest, source);
 
-		Node existingDeps = node.next;
+    }
 
-		node.next = newDep;
-		newDep.next = existingDeps;
-	}
-	
-	// implements DFS
-	private boolean hasCycle(int i) {
-		
-		if (feasible[i] == FEASIBLE)
-			return false;
-		else if (feasible[i] == VISITED)
-			return true;
-		else {
-			
-			// not visited node
-			Node node = graph[i];
-			
-			feasible[i] = VISITED;
-			while (node.next != null) {
-				
-				Node next = node.next;
-				if (hasCycle(next.index))
-					return true;
-				
-				node = next;
-			}
-				
-			feasible[i] = FEASIBLE;
-			return false;
-		}
-	}
-	
-	/**
-	 * checks for a cycle in Directed graph
-	 * 
-	 * @return
-	 */
-	public boolean hasCycle() {
-		
-		for (int i = 0; i < graph.length; i++) {
-			
-			if (hasCycle(i))
-				return true;
-		}
-		
-		return false;
-	}
+    public List<String> adj(String vert) {
+        return graph.get(vert);
+    }
+
+    public void addEdge(String A, String B) {
+
+        if(A.equals(B)) {
+            System.out.println("Hey, No self loops");
+            return;
+        }
+
+        List<String> a = graph.get(A);
+        if(a!=null) {
+            a.add(B);
+        } else {
+            a = new ArrayList<>();
+            a.add(B);
+        }
+        graph.put(A, a);
+
+        List<String> b = graph.get(B);
+        if(b!=null) {
+            b.add(A);
+        } else {
+            b = new LinkedList<>();
+            b.add(B);
+        }
+
+        graph.put(B, b);
+    }
+    // DFS With path tracking capabilities
+    public void DFS( String source, String dest, String path) {
+
+        if(source.equals(dest)) {
+            System.out.println(path);
+            return;
+        }
+
+        visited.put(source, true);
+
+        for (String a : graph.get(source)) {
+            if(visited.get(a)==null || !visited.get(a)) {
+                visited.put(a, true);
+                DFS(a, dest, path+" => "+a);
+            }
+         }
+    }
+    // BFS With path tracking capabilities
+    public void BFS(String source, String dest, String path) {
+        Queue<KV> queue = new LinkedList<>();
+        queue.add(new KV(source, path));
+        visited.put(source, true);
+        while (!queue.isEmpty()) {
+            KV vert = queue.poll();
+            if(dest.equals(vert.key)) {
+                System.out.println(vert.value);
+                return;
+            }
+
+            for (String a : graph.get(vert.key)) {
+                if(visited.get(a)==null || !visited.get(a)) {
+                    visited.put(a, true);
+                    queue.add(new KV(a, vert.value+" => "+a));
+                }
+            }
+        }
+    }
+    // Class used to keep track of path in BFS
+    class KV {
+        String key;
+        String value;
+
+        public KV(String key, String value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
 }
+
