@@ -1,4 +1,4 @@
-Java threaded sorting:
+Java threaded sorting for large set of numbers:
 
 The program sorts a large set of random numbers
  * in two different ways,
