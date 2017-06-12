@@ -1,6 +1,6 @@
 Java threaded sorting for large set of numbers:
 
-The program sorts a large set of random numbers < *Uniformly distributed random numbers from integer range(-2^32 to 2^32-1) * >
+The program sorts a large set of random numbers - *Uniformly distributed random numbers from integer range(-2^32 to 2^32-1). * 
  * in two different ways,
  * 1) With Java's collections.sort
  * 2) Use threads equal to the number of processors available for the JVM.
