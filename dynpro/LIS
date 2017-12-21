@@ -1,0 +1,58 @@
+public class LIS {
+
+    public static void main(String[] args) {
+        int[] x = { 0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15 };
+
+        int[] LIS = new int[x.length];
+        LIS[0] = 1;
+
+        for(int i=1; i<x.length; i++) {
+            int m = Integer.MIN_VALUE;
+            /**
+             * If an LIS is ends with x[i] then the previous element in the LIS should be < A[i].
+             * So we pick such less element where LIS which includes the element should be highest.
+             * **/
+            for (int j=0; j<i; j++) {
+                if(x[j] < x[i]) {
+                    m = Math.max(m, LIS[j]+1);
+                }
+            }
+            if(m == Integer.MIN_VALUE) m =1;
+
+            LIS[i] = m;
+        }
+
+        int max = LIS[0];
+        int index = 0;
+
+        for (int i=0; i<LIS.length; i++) {
+            //max = Math.max(max, LIS[i]);
+
+            if(LIS[i] > max) {
+                index = i;
+                max = LIS[i];
+            }
+        }
+
+        /**
+         * To get the elements in the longest increasing sequence, we start the element with the highest max LIS & repeatedly look for
+         * elements with 1 less than max value.
+         * **/
+
+        System.out.println("MAX LENGTH OF LIS is : "+LIS[index]);
+
+        /**
+         * Elemenets are,
+         * **/
+
+        int mLength = LIS[index];
+
+        for(int i=index; i>=0; i--) {
+            if(LIS[i] == mLength) {
+                System.out.print(" " +x[i]);
+                mLength--;
+            }
+        }
+
+    }
+}
