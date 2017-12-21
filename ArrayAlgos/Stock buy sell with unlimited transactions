@@ -1,0 +1,30 @@
+public class Solution {
+	public int maxProfit(final List<Integer> a) {
+	    int sum = 0;
+	    int start = 0;
+	    int end   = 0;
+	    
+	    int i=0;
+      /**
+      * Find all upward movements of the stock & sum them all.
+      **/
+	    
+	    while(i<a.size()) {
+	        
+	        while(i<a.size()-1 && a.get(i+1) < a.get(i)) {
+	            i++;
+	        }
+	        start = i;
+	        
+	        while(i<a.size()-1 && a.get(i+1) > a.get(i)) {
+	            i++;
+	        }
+	        end = i;
+	        
+	        sum = sum+a.get(end)-a.get(start);
+	        i++;
+	    }
+	    
+	    return sum;
+	}
+}
