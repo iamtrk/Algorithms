@@ -1,0 +1,29 @@
+public class permutations {
+
+    public static void main(String[] args) {
+        String a = "AABCDEBAZ";
+        char[] x = a.toCharArray();
+        /** lps contains lps for the substring s(i, j) **/
+        int[][] lps = new int[x.length][x.length];
+        /** All strings of length 1 are palindromes.**/
+        for (int i=0; i<x.length; i++) {
+            lps[i][i] = 1;
+        }
+        /**
+        * We start looking for palindrome subsequences from length 2 to string size.
+        **/
+        for(int sublen = 2; sublen<=x.length; sublen++) {
+            for (int i=0; i<=x.length-sublen; i++) {
+
+                int j = i+sublen-1;
+                if(x[i]==x[j] && sublen==2) {
+                    lps[i][j] = 2;
+                } else if(x[i]==x[j]) {
+                    lps[i][j] = 2 + lps[i+1][j-1];
+                } else {
+                    lps[i][j] = Math.max(lps[i][j-1], lps[i+1][j]);
+                }
+            }
+        }
+    }
+}
