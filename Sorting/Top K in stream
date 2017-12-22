@@ -1,0 +1,3 @@
+Use a MIN HEAP of size K to maintain top K elements in an infinite stream.
+
+When encountered an element smaller than the MIN of heap, pop it & push the element. Its an O(K) operation.
