@@ -1,0 +1,4 @@
+This is actually a fibanacci series.
+
+Why ? In the binary representation. numbers with 4 binary digits is formed by prefixing 1 & 0 to binary digits formed by
+adding 3 binary digits.
