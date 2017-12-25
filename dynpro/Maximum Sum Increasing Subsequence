@@ -1,0 +1,12 @@
+Maximum Sum Increasing Subsequence : 
+
+Given an Array:
+
+create 2 more arrays of same size.
+
+create two indices i & j.
+
+for each value of j : iterate the part of the array which is left side of the index j.
+
+for each i such that A[i] < A[j] : update the maxSum[j] = A[j]+maxSum[i]. While doing this also update maxSumIndex[j] = i;
+
