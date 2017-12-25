@@ -1,0 +1,9 @@
+Maximum Sum Rectangular Submatrix in Matrix: 
+
+Create an array of size rows count.
+copy the values of the first column in to the array.
+run kadane's algorithm & find max value.
+
+from each columns i,j  suck that :
+j = i+1 to end of the columns.
+add the column values to the optimized column & run Kadane's algorithm.
