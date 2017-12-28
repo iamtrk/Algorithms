@@ -27,3 +27,43 @@ public class permutations {
         }
     }
 }
+
+
+
+public static void main(String[] args) {
+        String a = "attrac";
+
+        int[][] lps = new int[a.length()][a.length()];
+
+        for (int i=0; i<a.length(); i++) {
+            lps[i][i] = 1;
+        }
+
+        for (int i=0; i<a.length()-1; i++) {
+            if(a.charAt(i) == a.charAt(i+1)) {
+                lps[i][i+1] = 2;
+            } else lps[i][i+1] = 1;
+        }
+
+        for (int len=3; len<=a.length(); len++) {
+            for (int i=0; i<=a.length()-len; i++) {
+
+                int j = i + len - 1;
+
+                if(a.charAt(i) == a.charAt(j)) lps[i][j] = 2 + lps[i+1][j-1];
+
+                else lps[i][j] = Math.max(lps[i+1][j], lps[i][j-1]);
+
+            }
+        }
+
+        for (int i=0; i<a.length(); i++) {
+            for (int j=0; j<a.length(); j++) {
+                System.out.print(lps[i][j]+" ");
+            }
+            System.out.println();
+        }
+
+        System.out.println(lps[0][a.length()-1]);
+
+    }
