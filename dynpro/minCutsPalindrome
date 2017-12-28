@@ -1,0 +1,43 @@
+static int getcuts(String src) {
+        if(src.length() == 0 || isPalindrome(src)) return 0;
+
+        if(map.containsKey(src)) return map.get(src);
+
+        int cuts = Integer.MAX_VALUE;
+        for (int i=1; i<src.length(); i++) {
+            String a = src.substring(0, i);
+            String b = src.substring(i, src.length());
+            //System.out.println(a+" "+b);
+            cuts = Math.min(1 + getcuts(a) + getcuts(b), cuts);
+
+        }
+
+        map.put(src, cuts);
+        System.out.println("cached: "+src);
+
+        return cuts;
+
+    }
+    
+    static boolean isPalindrome(String a) {
+
+        if(a.length()==0 || a.length() == 1) return true;
+
+        int len = a.length();
+        int i = 0;
+        while (len>=0) {
+
+            int j = i+len-1;
+            if(i<=j) {
+                System.out.println(i + " " + j);
+                if (a.charAt(i) != a.charAt(j)) {
+                    return false;
+                }
+
+            }
+            i++;
+            len = len - 2;
+        }
+
+        return true;
+    }
