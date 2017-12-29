@@ -1,0 +1,27 @@
+public class minCoins {
+    public static void main(String[] args) {
+
+        int sum = 4;
+        int[] denominations = new int[]{3, 5};
+
+
+        int[] a = new int[sum + 1];
+        // Initializing the solution array to Big numbers.
+        Arrays.fill(a, Integer.MAX_VALUE-10000);
+        Number of coins for zero amount is zero.
+        a[0]=0;
+        
+        // Sort the denominations in ascending order. why ? 
+        // We greedily try to use the big coins to minimize the number of coins ?
+        // If the returned value is Integer.MAX_VALUE-10000 then there is no solution.
+
+        for (int i = 0; i <= sum; i++) {
+            for (int j = denominations.length - 1; j >= 0; j--) {
+                if (denominations[j] <= i) {
+                    a[i] = Math.min(1 + a[i - denominations[j]], a[i]);
+                }
+            }
+        }
+        System.out.println(a[sum]);
+    }
+}
