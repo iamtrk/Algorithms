@@ -1,0 +1,20 @@
+public class longestValidPalindrome {
+    public static void main(String[] args) {
+        String a = ")(";
+
+        int[] res = new int[a.length()];
+
+        for (int i=1; i<a.length(); i++) {
+            if(a.charAt(i) == ')') {
+                if(a.charAt(i-1) == '(') {
+                    res[i] = ((i-2)>=0?res[i-2]:0) + 2;
+
+                } else if(i-1-res[i-1]>=0 && a.charAt(i-1-res[i-1]) == '(') {
+                    res[i] = res[i-1] + 2 + (i-1-res[i-1]-1>=0?res[i-1-res[i-1]-1]:0);
+                }
+            }
+        }
+
+        System.out.println(res[a.length()-1]);
+    }
+}
