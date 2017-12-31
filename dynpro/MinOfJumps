@@ -1,0 +1,37 @@
+// Can reach the end /min number of steps.
+public class JumpGame {
+    public static void main(String[] args) {
+        System.out.println(getMinSteps(new int[]{3,2,1,0,4}));
+
+    }
+
+    public static boolean canReachEnd(int[] jumps) {
+        int jump = 0;
+
+        int i;
+
+        for (i=0; i<jumps.length && i<=jump; i++) {
+            System.out.println("Value of is : "+i+" jump is "+jump);
+            jump = Math.max(jump, i + jumps[i]);
+        }
+
+        return i == jumps.length;
+    }
+
+    public static int getMinSteps(int[] jumps) {
+        int current = 0;
+        int max = 0;
+        int count = 0;
+
+        for (int i=0; i<jumps.length-1; i++) {
+            max = Math.max(max, i + jumps[i]);
+
+            if(current == i) {
+                count++;
+                current = max;
+            }
+        }
+
+        return count;
+    }
+}
