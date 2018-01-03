@@ -1,1 +1,26 @@
 
+public class segregate {
+    public static void main(String[] args) {
+
+        int[] a = {1,-3,-4,-5,-1,0,-4,-6,0};
+
+        int i=0;
+
+        for (int j=0; j<a.length; j++) {
+            if(a[j]<=0) {
+                int t = a[j];
+                a[j] =a[i];
+                a[i] = t;
+
+                i++;
+            }
+        }
+
+        for (int x : a) {
+            System.out.println(x);
+        }
+
+        //System.out.println(i);
+
+    }
+}
