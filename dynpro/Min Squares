@@ -1,3 +1,18 @@
-Minimum Numbers are Required Whose Square Sum is Equal To a Given Number
-Ex: 
-12 : 2*2 + 2*2 + 2*2 or 1*1 (12 times). We need 3 numbers to make the request.
+//Minimum Numbers are Required Whose Square Sum is Equal To a Given Number
+//Ex: 12 : 2*2 + 2*2 + 2*2 or 1*1 (12 times). We need 3 numbers to make the request.
+
+class Solution {
+    public int numSquares(int n) {
+        int[] sol = new int[n+1];
+        Arrays.fill(sol, Integer.MAX_VALUE);
+        
+        for(int i=1; i<=n; i++) {
+            for(int j=1; j<=Math.sqrt(i); j++) {
+                if(i==j*j) sol[i]=1;
+                else sol[i] = Math.min(sol[i], sol[i-j*j]+1);
+            }
+        }
+        return sol[n];
+    }
+}
+
