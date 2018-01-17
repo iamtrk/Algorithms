@@ -1,3 +1,4 @@
+/* Has application in consistent hashing */
 public class Solution {
 	public int searchInsert(ArrayList<Integer> a, int b) {
 	    int i=0;
