@@ -18,12 +18,9 @@ class Solution {
         
         int i=0;
         
-        ListNode p = head;
-        
-        
+        ListNode p = head;    
         while(p!=null) {
-            i++;
-            
+            i++;     
             if(i%k==0) {
                 pre = reverse(pre, p.next);
                 p = pre.next;
@@ -31,7 +28,6 @@ class Solution {
                 p=p.next;
             }
         }
-        
         return fake.next;
     }
  /*
@@ -55,9 +51,6 @@ class Solution {
             pre.next  = curr;       
             curr = last.next;
         }
-        return last;
-        
-    }
-    
-    
+        return last;   
+    }  
 }
