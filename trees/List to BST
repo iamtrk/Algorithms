@@ -1,0 +1,21 @@
+static ListNode h;
+
+public TreeNode sortedListToBST(int start, int end) {
+		if (start > end)
+			return null;
+ 
+		// mid
+		int mid = (start + end) / 2;
+ 
+		TreeNode left = sortedListToBST(start, mid - 1);
+    
+		TreeNode root = new TreeNode(h.val);
+		h = h.next;
+    
+		TreeNode right = sortedListToBST(mid + 1, end);
+ 
+		root.left = left;
+		root.right = right;
+ 
+		return root;
+	}
