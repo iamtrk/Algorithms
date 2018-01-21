@@ -16,33 +16,28 @@ import java.util.Stack;
  *
  */
 public class InOrderWORecursion {
-    public List<Integer> inorder(TreeNode node) {
-        List<Integer> result = new ArrayList<>();
-        if(node == null) return result;
-
+    public ArrayList<Integer> inorderTraversal(TreeNode A) {
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        if(A == null) return result;
+        
         Stack<TreeNode> stack = new Stack<>();
-
-        while (node!=null) {
-            stack.push(node);
-            node = node.left;
-        }
-
-        while (stack.size()>0) {
-            node = stack.pop();
-
-            result.add(node.val);
-            if(node.right!=null) {
-                node = node.right;
-
-                while (node!=null) {
-                    stack.push(node);
-                    node = node.left;
-                }
+        while(!stack.isEmpty() || A!=null) {
+            if(A!=null) {
+                stack.push(A);
+                A=A.left;
+            } else {
+                TreeNode t = stack.pop();
+                      // Here the logic can be changed to get the Kth smallest element.
+                      // If we are looking for Kth smallest element, reduce the k value
+                      // each time stack.pop happened. return when k==0.
+                      // i.e k--; if(k==0) result = t.val;
+                result.add(t.val);
+                A=t.right;
             }
-        }
+        }   
         return result;
     }
-
+          
     public static void main(String[] args) {
         TreeNode a = new TreeNode(2);
         TreeNode b = new TreeNode(3);
