@@ -1,0 +1,12 @@
+public int removeElement(int[] nums, int val) {
+// Same logic can be used to remove duplicates in a sorted array in place.
+// use nums[i] instead of i.
+    int i = 0;
+    for (int j = 0; j < nums.length; j++) {
+        if (nums[j] != val) {
+            nums[i] = nums[j];
+            i++;
+        }
+    }
+    return i;
+}
