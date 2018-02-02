@@ -1,0 +1,18 @@
+public class PowerSet {
+
+    public static void main(String[] args) {
+        dfs(0, new int[]{1,2,3}, new ArrayList<Integer>());
+    }
+
+    public static void dfs(int depth, int[] A, List<Integer> cur) {
+        if(depth == A.length) {
+            System.out.println(cur);
+            return;
+        }
+
+        dfs(depth+1, A, cur);
+        cur.add(A[depth]);
+        dfs(depth+1, A, cur);
+        cur.remove(new Integer(A[depth]));
+    }
+}
