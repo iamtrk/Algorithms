@@ -1,0 +1,20 @@
+Node mergeLists(Node headA, Node headB) {
+    Node res = new Node();
+    Node head = res;
+    
+    while(headA!=null && headB!=null) {
+        if(headA.data<headB.data) {
+            res.next = headA;
+            res = res.next;
+            headA = headA.next;
+        } else {
+            res.next = headB;
+            res = res.next;
+            headB = headB.next;
+        }
+    }
+    if(headA!=null) res.next = headA;
+    if(headB!=null) res.next = headB;
+    
+    return head.next;
+}
