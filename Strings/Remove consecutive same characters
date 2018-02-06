@@ -1,0 +1,21 @@
+static String super_reduced_string(String s){
+        Stack<Character> stack = new Stack<>();
+        
+        for(int i=0; i<s.length(); i++) {
+            char c = s.charAt(i);
+            
+            if(stack.isEmpty() || stack.peek()!=c) {
+                stack.push(c);
+            } else {
+                stack.pop();
+            }
+        }
+        
+        if(stack.isEmpty()) return "Empty String";
+        
+        StringBuilder sb = new StringBuilder();
+        while(!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        return sb.reverse().toString(); 
+    }
