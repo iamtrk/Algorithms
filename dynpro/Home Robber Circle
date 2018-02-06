@@ -1,0 +1,30 @@
+class Solution {
+    public int rob(int[] nums) {
+        if(nums==null || nums.length==0) return 0;
+        
+        if(nums.length==1) return nums[0];
+        
+        if(nums.length==2) return Math.max(nums[0], nums[1]);
+        
+        int firstIncluded = getMax(nums, 0, nums.length-2);
+        int firstNotIncluded = getMax(nums, 1, nums.length-1);
+        
+        return Math.max(firstIncluded, firstNotIncluded);
+        
+    }
+    
+    public int getMax(int[] nums, int i, int j) {
+        if(i==j) return nums[i];
+        
+        int[] rob = new int[nums.length];
+        
+        rob[i] = nums[i];
+        rob[i+1] = Math.max(nums[i], nums[i+1]);
+        
+        for(int k=i+2; k<=j; k++) {
+            rob[k] = Math.max(rob[k-1], rob[k-2]+nums[k]);
+        }
+        
+        return rob[j];
+    }
+}
