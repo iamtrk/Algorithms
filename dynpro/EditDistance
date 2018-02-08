@@ -1,1 +1,28 @@
 
+public class Solution {
+	public int minDistance(String a, String b) {
+	    int[][] res = new int[b.length()+1][a.length()+1];
+	    
+	    for(int i=0; i<=a.length(); i++) {
+	        res[0][i] = i;
+	    }
+	    
+	    for(int i=0; i<=b.length(); i++) {
+	        res[i][0] = i;
+	    }
+	    
+	    for(int i=1; i<b.length()+1; i++) {
+	        for(int j=1; j<a.length()+1; j++) {
+	            int x = Math.min(Math.min(res[i-1][j], res[i][j-1]), res[i-1][j-1]);
+	            if(b.charAt(i-1) == a.charAt(j-1)) {
+	                res[i][j] = res[i-1][j-1];
+	            } else {
+	                res[i][j] = x+1;
+	            }
+	        }
+	    }
+	    
+	    return res[b.length()][a.length()];
+	    
+	}
+}
