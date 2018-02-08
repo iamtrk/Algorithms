@@ -1,3 +1,5 @@
 Count All Palindromic Subsequence in a given String.
 
 Make Longest Palindrome Sequence type 2D matrix & count all LPS(i,j) values where it is >1.
+
+https://www.geeksforgeeks.org/count-palindromic-subsequence-given-string/
