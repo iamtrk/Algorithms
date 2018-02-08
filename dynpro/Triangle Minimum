@@ -1,0 +1,23 @@
+private int DFS(ArrayList<ArrayList<Integer>> triangle, int row, int column,  
+     HashMap<Integer, Integer> rowMin) {  
+   int min = triangle.get(row).get(column);  
+   if (row == triangle.size() - 1) { // last row, return itself  
+     return min;  
+   }  
+   
+   if (!rowMin.containsKey(row+1)) { // calculate for first column  
+     min += Math.min(DFS(triangle, row+1, column, rowMin),  
+             DFS(triangle, row+1, column+1, rowMin));  
+   } else {  
+     min += Math.min(rowMin.get(row+1),  
+             DFS(triangle, row+1, column+1, rowMin));  
+   }  
+   
+   rowMin.put(row, min);  
+   
+   return min;  
+ }  
+   
+ public int minimumTotal(ArrayList<ArrayList<Integer>> triangle) {  
+   return DFS(triangle, 0, 0, new HashMap<Integer, Integer>());  
+ } 
