@@ -1,0 +1,66 @@
+package com.iamtrk.recursion;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProducerConsumer {
+    public static void main(String[] args) {
+
+        List<Integer> list = new ArrayList<>();
+        Thread t1 = new Producer(list);
+        Thread t2 = new Consumer(list);
+
+        t1.start();
+        t2.start();
+    }
+}
+
+class Producer extends Thread {
+
+    final List<Integer> lock;
+    int i = 0;
+
+    public Producer(List<Integer> o) {
+        this.lock = o;
+    }
+    public void run() {
+        while (true) {
+            synchronized (lock) {
+                if(lock.size()==10) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                lock.add(i++);
+                lock.notifyAll();
+            }
+        }
+    }
+}
+
+class Consumer extends Thread {
+    final List<Integer> lock;
+    public Consumer(List<Integer> o) {
+        this.lock = o;
+    }
+    public void run() {
+        while (true) {
+            synchronized (lock) {
+                if (lock.isEmpty()) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                System.out.println(lock.remove(0));
+                lock.notifyAll();
+            }
+        }
+    }
+}
+
+
