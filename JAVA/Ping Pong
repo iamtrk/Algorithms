@@ -1,0 +1,90 @@
+package com.iamtrk.lists;
+
+public class PingPong {
+    static volatile booleanLock lock = new booleanLock();
+    public static void main(String[] args) {
+    
+        Thread t1 = new ping(lock);
+        Thread t2 = new pong(lock);
+
+        t1.start();
+        t2.start();
+
+    }
+}
+
+class ping extends Thread {
+
+    final booleanLock lock;
+
+    public ping(booleanLock o) {
+        this.lock = o;
+    }
+    public void run() {
+        while (true) {
+            synchronized (lock) {
+                if (lock.isLocked()) {
+                    System.out.println("ping");
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                lock.setLocked(false);
+                lock.notifyAll();
+            }
+        }
+    }
+}
+
+class pong extends Thread {
+    final booleanLock lock;
+    public pong(booleanLock o) {
+        this.lock = o;
+    }
+    public void run() {
+        while (true) {
+            synchronized (lock) {
+                if (!lock.isLocked()) {
+                    try {
+                        lock.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("pong");
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                lock.setLocked(true);
+                lock.notifyAll();
+            }
+        }
+    }
+}
+
+class booleanLock {
+    private boolean locked;
+
+    public booleanLock() {
+        locked = true;
+    }
+
+    public boolean isLocked() {
+        return locked;
+    }
+
+    public void setLocked(boolean locked) {
+        this.locked = locked;
+    }
+}
