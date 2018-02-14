@@ -1,0 +1,18 @@
+class Solution {
+    TreeNode prevNode;
+    int minVal;
+    public int minDiffInBST(TreeNode root) {
+        minVal = Integer.MAX_VALUE;
+        inorder(root);
+        return minVal;
+    }
+    
+    void inorder(TreeNode root) {
+        if (root == null) return;
+        inorder(root.left);
+        if (prevNode != null) minVal = Math.min(minVal, root.val - prevNode.val);
+        // previous node in the in order traversal
+        prevNode = root;
+        inorder(root.right);
+    }  
+}
