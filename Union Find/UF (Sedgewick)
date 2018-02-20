@@ -1,6 +1,6 @@
 public class UF {
     private int[] id; // access to component id (site indexed)
-    private int count; // number of components
+    private int count; // number of connected components
     private int[] sz; // size of component for roots (site indexed)
 
     public UF(int N) { // Initialize component id array.
