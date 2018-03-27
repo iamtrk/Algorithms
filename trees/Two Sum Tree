@@ -1,0 +1,49 @@
+/**
+ * Definition for binary tree
+ * class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+public class Solution {
+    public int t2Sum(TreeNode A, int B) {
+        Stack stack1 = new Stack<>();
+        Stack stack2 = new Stack<>();
+        TreeNode cur1 = A;
+        TreeNode cur2 = A;
+        
+        while (!stack1.isEmpty() || !stack2.isEmpty() ||
+                cur1 != null || cur2 != null) {
+            if (cur1 != null || cur2 != null) {
+                if (cur1 != null) {
+                    stack1.push(cur1);
+                    cur1 = cur1.left;
+                }
+                
+                if (cur2 != null) {
+                    stack2.push(cur2);
+                    cur2 = cur2.right;
+                }
+            } else {
+                int val1 = stack1.peek().val;
+                int val2 = stack2.peek().val;
+                
+                if (stack1.peek() == stack2.peek()) break;
+                
+                if (val1 +  val2 == B) return 1;
+                
+                if (val1 + val2 < B) {
+                    cur1 = stack1.pop();
+                    cur1 = cur1.right;
+                } else {
+                    cur2 = stack2.pop();
+                    cur2 = cur2.left;
+                }
+            }
+        }
+        
+        return 0;
+    }
+}
