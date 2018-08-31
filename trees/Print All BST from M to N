@@ -1,0 +1,63 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class PrintAllTreesFromMtoN {
+
+    public static void main (String[] args) {
+        
+        List<TreeNode> list = getAllTrees(4, 3);
+
+        for (TreeNode node : list) {
+            preOrder(node);
+            System.out.println();
+        }
+    }
+
+    public static void preOrder(TreeNode node) {
+        if(node==null) return;
+
+        System.out.print(node.data+" ");
+        preOrder(node.left);
+        preOrder(node.right);
+    }
+
+    static List<TreeNode> getAllTrees(int start, int end) {
+        List<TreeNode> list = new ArrayList<>();
+
+        if(start>end) {
+            list.add(null);
+            return list;
+        }
+
+        for (int r=start; r<=end; r++) {
+
+            List<TreeNode> leftTree = getAllTrees(start, r-1);
+            List<TreeNode> rightTree = getAllTrees(r+1, end);
+
+            for (int i=0; i<leftTree.size(); i++) {
+
+                TreeNode left = leftTree.get(i);
+                for (int j=0; j<rightTree.size(); j++) {
+                    TreeNode right = rightTree.get(j);
+
+                    TreeNode root = new TreeNode(r);
+                    root.left = left;
+                    root.right = right;
+
+                    list.add(root);
+                }
+            }
+        }
+        return list;
+    }
+
+}
+
+class TreeNode {
+    TreeNode left, right;
+    int data;
+
+    public TreeNode(int data) {
+        this.data = data;
+    }
+}
