@@ -35,6 +35,7 @@ class Producer extends Thread {
                 }
 
                 lock.add(i++);
+                // notify or notifyAll doesn't release the lock immediately.
                 lock.notifyAll();
             }
         }
