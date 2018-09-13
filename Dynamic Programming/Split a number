@@ -14,7 +14,7 @@ public class SplittingNumber {
         else if(2*K>N) return 1;
 
         int res = 1;
-
+        // res is initialized to 1.
         for (int i=K; i<=N; i++) {
             res = res + splitNumMinK(N-i, i);
         }
