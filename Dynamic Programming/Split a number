@@ -1,0 +1,24 @@
+package com.iamtrk.snowlion.Dynpro;
+/**
+ * Split a number such that each such partition has a min number K.
+ * Add memoization based on multi map instead of 2D array.
+ * **/
+public class SplittingNumber {
+    public static void main(String[] args) {
+        System.out.println(splitNumMinK(100, 3));
+    }
+
+    public static int splitNumMinK(int N, int K) {
+
+        if(N<K) return 0;
+        else if(2*K>N) return 1;
+
+        int res = 1;
+
+        for (int i=K; i<=N; i++) {
+            res = res + splitNumMinK(N-i, i);
+        }
+        return res;
+
+    }
+}
