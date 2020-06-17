@@ -1,0 +1,40 @@
+class Solution {
+    ArrayList<String> result = new ArrayList<>();
+    public List<String> binaryTreePaths(TreeNode root) {
+        ArrayDeque<Integer> path = new ArrayDeque<>();
+        printRootToleafPaths(root, path);
+        
+        return result;
+    }
+    
+    public boolean isLeaf(TreeNode node) {
+        return node.left==null && node.right==null;
+    }
+    
+    public void printRootToleafPaths(TreeNode node, ArrayDeque<Integer> deque) {
+        if(node == null) return;
+        
+        deque.addLast(node.val);
+        
+        if(isLeaf(node)) {
+            //Update the path list.
+            addPath(deque);
+        }
+        
+        printRootToleafPaths(node.left, deque);
+        printRootToleafPaths(node.right, deque);
+        
+        deque.removeLast();
+        
+    }
+    
+    public void addPath(ArrayDeque<Integer> deque) {
+        String s = "";
+        Iterator<Integer> iterator = deque.iterator();
+        while(iterator.hasNext()) {
+            s = s + iterator.next() + "->";
+        }
+        s = s.substring(0, s.length()-2);
+        result.add(s);
+    }
+}
