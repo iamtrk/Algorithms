@@ -13,7 +13,7 @@ class Solution {
             return true;
         }
         // Check the conditions
-        if(nums[lo]==nums[mid] && nums[mid]==nums[hi]) {
+        if(nums[lo]==nums[mid] && nums[mid]==nums[hi]) { Search in both directions this case : Linear time 
             return search(nums, target, lo, mid-1) || search(nums, target, mid+1, hi);
         } else if(nums[lo]<=nums[mid]) {
             if(nums[lo]<=target && nums[mid]>target) {
