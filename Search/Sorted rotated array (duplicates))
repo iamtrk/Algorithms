@@ -12,7 +12,7 @@ class Solution {
         if(nums[mid]==target) {
             return true;
         }
-        
+        // Check the conditions
         if(nums[lo]==nums[mid] && nums[mid]==nums[hi]) {
             return search(nums, target, lo, mid-1) || search(nums, target, mid+1, hi);
         } else if(nums[lo]<=nums[mid]) {
