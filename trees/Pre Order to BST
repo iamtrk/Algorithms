@@ -1,0 +1,26 @@
+
+
+
+class Solution {
+    public TreeNode bstFromPreorder(int[] preorder) {
+        return constructBST(preorder, 0, preorder.length-1);
+    }
+    
+    public TreeNode constructBST(int[] preorder, int start, int end) {
+        if(start > end) return null;
+        
+        TreeNode t = new TreeNode(preorder[start]);
+        
+        int i;
+        for(i = start; i<=end; i++) {
+            if(preorder[i] > preorder[start]) {
+                break;
+            }
+        }
+        
+        t.left = constructBST(preorder, start+1, i-1);
+        t.right = constructBST(preorder, i, end);
+        
+        return t;
+    }
+}
