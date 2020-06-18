@@ -1,0 +1,37 @@
+//Each camera at a node can monitor its parent, itself, and its immediate children.
+
+//Solution:
+If a node has children that are not covered by a camera, then we must place a camera here. 
+Additionally, if a node has no parent and it is not covered, we must place a camera here.
+
+
+
+class Solution {
+    int cameras;
+    Set<TreeNode> coveredNodes;
+    public int minCameraCover(TreeNode root) {
+        cameras = 0;
+        coveredNodes = new HashSet<>();
+        coveredNodes.add(null);
+        
+        dfs(root, null);   
+        return cameras;
+    }
+    
+    public void dfs(TreeNode node, TreeNode parent) {
+        if(node!=null) {
+            dfs(node.left, node);
+            dfs(node.right, node);
+        
+            if((parent==null && !coveredNodes.contains(node)) || 
+               !coveredNodes.contains(node.left) ||
+               !coveredNodes.contains(node.right)) {
+                cameras++;
+                coveredNodes.add(node);
+                coveredNodes.add(parent);
+                coveredNodes.add(node.left);
+                coveredNodes.add(node.right);
+            }
+        }
+    }
+}
