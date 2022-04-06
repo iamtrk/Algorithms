@@ -1,0 +1,15 @@
+Version based Optimistic locking 
+
+Quadtree 
+
+Cache miss attack
+  - Short TTL for null keys
+  - Bloom filters
+  
+ Register(0.3ns) < L1 Cache(1ns) < L2 Cache(3ns) < L3 Cache(13ns) < RAM(120ns)  < SSD(50-150us) < HDD (1-10ms)
+ 
+ IO Multiplexing & Single threaded read/write (Redis)
+ 
+ Exactly once = At least once (Through retrial) + At most once (Through Idempotency)
+ 
+ Erasure coding for S3 like Object storage
